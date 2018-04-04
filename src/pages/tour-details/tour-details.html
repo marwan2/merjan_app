@@ -1,0 +1,53 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="tour">{{tour.placeDetails.pl_name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<div *ngIf="tour">
+
+		<h1>{{ tour.placeDetails.pl_name }}</h1>
+
+		<ion-slides pager>
+		  	<ion-slide>
+		    	<img src="{{tour.placeDetails.thumb_image}}" style="max-width: 100%; height: 200px;">
+		  	</ion-slide>
+		  	<ion-slide *ngFor="let gimg of tour.place_gallary">
+		    	<img src="{{gimg.place_url}}" style="max-width: 100%; height: 200px;">
+		  	</ion-slide>
+		</ion-slides>
+		<hr>
+
+		<p>Address: {{ tour.placeDetails.pl_address }}</p>
+		<br>
+			<h3>Prices:</h3>
+			<br />
+			Adult: {{ tour.placeDetails.ADULT }} <br />
+			Single: {{ tour.placeDetails.SINGLE }} <br />
+		
+
+		<h3>Summary:</h3> <br />
+		{{tour.placeDetails.Summary}}
+
+		<hr />
+
+		<h3>Itinerary:</h3> <br />
+		{{tour.placeDetails.Itinerary}}
+
+		<hr />
+		<h3>Inclusions:</h3> <br />
+		{{tour.placeDetails.Inclusions}}
+
+	</div>
+	<br>
+
+	<button (click)="goToBooking(tour.placeDetails.id)" ion-button block round>Book Now</button>
+
+	<br>
+	<a href="#" (click)="backToHome()">Back to Home</a>
+
+</ion-content>

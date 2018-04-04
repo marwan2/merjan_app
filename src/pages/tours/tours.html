@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Tours</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<div *ngIf="tours">
+		<ion-card *ngFor="let tour of tours.rows">
+			<a href="#" (click)="tourDetails(tour.id)">
+				<img src="{{tour.thumb_image}}"/>
+			</a>
+			<ion-card-content>
+			    <ion-card-title>
+			      <a href="#" (click)="tourDetails(tour.id)">{{tour.pl_name}}</a>
+			      </ion-card-title>
+			    <p>
+			      {{tour.pl_address}}
+			    </p>
+			</ion-card-content>
+		</ion-card>
+	</div>
+
+	<br>
+	<a href="#" (click)="backToHome()">Back to Home</a>
+
+</ion-content>
