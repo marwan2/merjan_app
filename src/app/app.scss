@@ -14,3 +14,29 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+@font-face {
+    font-family: 'DroidKufi-Regular';
+    src: url('../assets/fonts/droid/DroidKufi-Regular.eot');
+    src: url('../assets/fonts/droid/DroidKufi-Regular.eot?#iefix') format('embedded-opentype'),
+         url('../assets/fonts/droid/DroidKufi-Regular.woff') format('woff'),
+         url('../assets/fonts/droid/DroidKufi-Regular.ttf') format('truetype'),
+         url('../assets/fonts/droid/DroidKufi-Regular.svg#DroidKufi-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'DroidKufi-Bold';
+    src: url('../assets/fonts/droid/DroidKufi-Bold.eot');
+    src: url('../assets/fonts/droid/DroidKufi-Bold.eot?#iefix') format('embedded-opentype'),
+         url('../assets/fonts/droid/DroidKufi-Bold.woff') format('woff'),
+         url('../assets/fonts/droid/DroidKufi-Bold.ttf') format('truetype'),
+         url('../assets/fonts/droid/DroidKufi-Bold.svg#DroidKufi-Bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+  font-family: 'DroidKufi-Regular', sans-serif;
+}

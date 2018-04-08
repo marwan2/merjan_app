@@ -1,3 +1,5 @@
 page-aboutus {
-
+	.head_bg {
+		background: map-get($colors, primary);
+	}
 }

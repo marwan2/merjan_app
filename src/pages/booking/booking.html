@@ -1,13 +1,7 @@
-<!--
-  Generated template for the BookingPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Booking</ion-title>
+  <ion-navbar color="secondary">
+    <ion-title>الحجز</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,5 +9,8 @@
 
 <ion-content padding>
 
-	Booking of Tour #{{tour_id}}
+	الحجز في الرحلة:
+	<h1>{{ tour.pl_name }}</h1>
+
+	<br> رقم #{{tour_id}}
 </ion-content>

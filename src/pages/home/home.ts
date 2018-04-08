@@ -11,10 +11,12 @@ import { Storage } from '@ionic/storage';
 export class HomePage {
 
 	departments: any;
+	slides: any;
 
 	constructor(public navCtrl: NavController, public restProvider: RestProvider, public loadingCtrl: LoadingController, public storage: Storage) {
 		
 		this.getTourDepartments();
+		this.slides = [1,2,3,4,5];
 	}
 
 	getTourDepartments() {
@@ -41,9 +43,10 @@ export class HomePage {
 		});
 	}
 
-	ToursPage(dept_id) {
+	ToursPage(dept_id, title) {
 		this.navCtrl.push(ToursPage, {
-			dept_id:dept_id
+			dept_id:dept_id,
+			title: title,
 		});
 	}
 }

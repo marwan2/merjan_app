@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title *ngIf="tour">{{tour.placeDetails.pl_name}}</ion-title>
   </ion-navbar>
 
@@ -12,7 +12,7 @@
 
 		<h1>{{ tour.placeDetails.pl_name }}</h1>
 
-		<ion-slides pager>
+		<ion-slides class="ltr" pager>
 		  	<ion-slide>
 		    	<img src="{{tour.placeDetails.thumb_image}}" style="max-width: 100%; height: 200px;">
 		  	</ion-slide>
@@ -22,32 +22,80 @@
 		</ion-slides>
 		<hr>
 
-		<p>Address: {{ tour.placeDetails.pl_address }}</p>
+		<p>{{ tour.placeDetails.pl_address }}</p>
 		<br>
-			<h3>Prices:</h3>
-			<br />
-			Adult: {{ tour.placeDetails.ADULT }} <br />
-			Single: {{ tour.placeDetails.SINGLE }} <br />
 		
+		<ion-list>
+			<ion-item>
+				<ion-icon name="leaf" item-start></ion-icon>
+			    الغرفة المزدوجة:
+			    <ion-badge item-end>{{ tour.placeDetails.ADULT }}</ion-badge>
+			</ion-item>
+			<ion-item>
+				<ion-icon name="leaf" item-start></ion-icon>
+			    الغرفة المفردة:
+			    <ion-badge item-end>{{ tour.placeDetails.SINGLE }}</ion-badge>
+			</ion-item>
+			<ion-item>
+				<ion-icon name="leaf" item-start></ion-icon>
+			    (6-11 سنة):
+			    <ion-badge item-end>{{ tour.placeDetails.SINGLE }}</ion-badge>
+			</ion-item>
+			<ion-item>
+				<ion-icon name="leaf" item-start></ion-icon>
+			    (2-5 سنة):
+			    <ion-badge item-end>{{ tour.placeDetails.SINGLE }}</ion-badge>
+			</ion-item>
+			<ion-item>
+				<ion-icon name="leaf" item-start></ion-icon>
+			    اطفال صغار:
+			    <ion-badge item-end>{{ tour.placeDetails.SINGLE }}</ion-badge>
+			</ion-item>
+			<ion-item>
+				<ion-icon name="leaf" item-start></ion-icon>
+			    المدة:
+			    <ion-badge item-end>{{ tour.placeDetails.SINGLE }}</ion-badge>
+			</ion-item>
+			<ion-item>
+				<ion-icon name="leaf" item-start></ion-icon>
+			    تاريخ الرحلة:
+			    <ion-badge item-end>{{ tour.placeDetails.SINGLE }}</ion-badge>
+			</ion-item>
+		</ion-list>
 
-		<h3>Summary:</h3> <br />
-		{{tour.placeDetails.Summary}}
+		<ion-card>
+		  <ion-card-header>
+		    التفاصيل
+		  </ion-card-header>
+		  <ion-card-content>
+		    <div [innerHtml]="tour.placeDetails.Summary"></div>
+		  </ion-card-content>
+		</ion-card>
 
-		<hr />
+		<ion-card>
+		  <ion-card-header>
+		    مسار الرحلة
+		  </ion-card-header>
+		  <ion-card-content>
+		    <div [innerHtml]="tour.placeDetails.Itinerary"></div>
+		  </ion-card-content>
+		</ion-card>
 
-		<h3>Itinerary:</h3> <br />
-		{{tour.placeDetails.Itinerary}}
-
-		<hr />
-		<h3>Inclusions:</h3> <br />
-		{{tour.placeDetails.Inclusions}}
+		<ion-card>
+		  <ion-card-header>
+		    المحتويات
+		  </ion-card-header>
+		  <ion-card-content>
+		    <div [innerHtml]="tour.placeDetails.Inclusions"></div>
+		  </ion-card-content>
+		</ion-card>	
 
 	</div>
 	<br>
 
-	<button (click)="goToBooking(tour.placeDetails.id)" ion-button block round>Book Now</button>
+	<button (click)="goToBooking(tour.placeDetails.id, tour.placeDetails)" ion-button block round color="secondary">احجز الأن</button>
 
 	<br>
-	<a href="#" (click)="backToHome()">Back to Home</a>
+	<a href="#" (click)="backToHome()" ion-button round block>العودة للتصنيفات</a>
 
 </ion-content>

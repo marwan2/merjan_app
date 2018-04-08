@@ -5,12 +5,13 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { ToursPage } from '../pages/tours/tours';
 import { TourDetailsPage } from '../pages/tour-details/tour-details';
 import { AboutusPage } from '../pages/aboutus/aboutus';
 import { ContactPage } from '../pages/contact/contact';
 import { BookingPage } from '../pages/booking/booking';
+import { PrivacyPage } from '../pages/privacy/privacy';
+import { TermsPage }   from '../pages/terms/terms';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,12 +23,13 @@ import { RestProvider } from '../providers/rest/rest';
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
     ToursPage,
     TourDetailsPage,
     BookingPage,
     AboutusPage,
     ContactPage,
+    PrivacyPage,
+    TermsPage,
   ],
   imports: [
     BrowserModule,
@@ -39,12 +41,13 @@ import { RestProvider } from '../providers/rest/rest';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
     ToursPage,
     TourDetailsPage,
     BookingPage,
     AboutusPage,
     ContactPage,
+    PrivacyPage,
+    TermsPage,
   ],
   providers: [
     StatusBar,
