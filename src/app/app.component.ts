@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
+import { RestProvider } from '../../providers/rest/rest';
 
 import { HomePage } from '../pages/home/home';
 import { AboutusPage } from '../pages/aboutus/aboutus';
@@ -20,7 +21,7 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
   departments: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public storage: Storage) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public storage: Storage, public restProvider: RestProvider) {
     this.initializeApp();
     this.platform.setDir('rtl', true);
 
@@ -46,7 +47,6 @@ export class MyApp {
             });
         }
     });
-
 
   }
 
