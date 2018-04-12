@@ -18,7 +18,7 @@ export class MyApp {
   
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, id: any}>;
   departments: any;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public storage: Storage, public restProvider: RestProvider) {
@@ -26,9 +26,9 @@ export class MyApp {
     this.platform.setDir('rtl', true);
 
     this.pages = [
-      { title: 'الرئيسية', component: HomePage },
-      { title: 'من نحن', component: AboutusPage },
-      { title: 'تواصل معنا', component: ContactPage },
+      { title: 'الرئيسية', component: HomePage, id: 0 },
+      { title: 'من نحن', component: AboutusPage, id: 0 },
+      { title: 'تواصل معنا', component: ContactPage, id: 0 },
     ];
 
     this.storage.get('stored_depts').then((storedDepts) => {
