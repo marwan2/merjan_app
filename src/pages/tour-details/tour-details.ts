@@ -14,11 +14,13 @@ export class TourDetailsPage {
 
 	tour: any;
 	tour_id: any;
+  currency: any;
 
   	constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public loadingCtrl: LoadingController, public storage: Storage) {
 
   		this.tour_id = navParams.get('tour_id');
   		this.getTour(this.tour_id);
+      this.currency = 'جنيه';
   	}
 
   	ionViewDidLoad() {
@@ -51,10 +53,11 @@ export class TourDetailsPage {
   		this.navCtrl.push(HomePage);
   	}
 
-    goToBooking(tour_id, tour) {
+    goToBooking(tour_id, tour, booking) {
       this.navCtrl.push(BookingPage, {
         tour_id: tour_id,
         tour: tour,
+        booking: booking,
       });
     }
 

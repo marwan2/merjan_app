@@ -1,13 +1,16 @@
-<ion-header>
+<ion-header persistent="true">
 
-  <ion-navbar color="primary">
-    <ion-title>{{page_title}}</ion-title>
-  </ion-navbar>
+	<ion-navbar color="primary" swipeBackEnabled="false" persistent="true">
+		<button ion-button menuToggle>
+	  		<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{page_title}}</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
 	<div *ngIf="tours">
 		<ion-card *ngFor="let tour of tours.rows">

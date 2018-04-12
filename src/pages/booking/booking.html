@@ -13,4 +13,24 @@
 	<h1>{{ tour.pl_name }}</h1>
 
 	<br> رقم #{{tour_id}}
+
+	<ion-card>
+	  <ion-card-content>
+	    {{booking.WorkingTxt}}
+	  </ion-card-content>
+	</ion-card>
+
+	<ion-card>
+	  <ion-card-content>
+	    {{booking.WHyUsTxt}}
+	  </ion-card-content>
+	</ion-card>
+
+	<ion-card>
+	  <ion-card-content>
+	    {{booking.phone_number}}
+	  </ion-card-content>
+	</ion-card>
+
+	<button (click)="goToTour(tour_id)" ion-button block round color="secondary">العودة لتفاصيل الرحلة</button>
 </ion-content>

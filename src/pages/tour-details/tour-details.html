@@ -1,65 +1,99 @@
 <ion-header>
 
   <ion-navbar color="primary">
+  	<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title *ngIf="tour">{{tour.placeDetails.pl_name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 	<div *ngIf="tour">
+		<ion-card>
+		  <ion-item>
+		    <h2>{{ tour.placeDetails.pl_name }}</h2>
+		  </ion-item>
 
-		<h1>{{ tour.placeDetails.pl_name }}</h1>
+			<ion-slides class="ltr" pager>
+			  	<ion-slide>
+			    	<img src="{{tour.placeDetails.thumb_image}}" style="max-width: 100%; height: 200px;">
+			  	</ion-slide>
+			  	<ion-slide *ngFor="let gimg of tour.place_gallary">
+			    	<img src="{{gimg.place_url}}" style="max-width: 100%; height: 200px;">
+			  	</ion-slide>
+			</ion-slides>
 
-		<ion-slides class="ltr" pager>
-		  	<ion-slide>
-		    	<img src="{{tour.placeDetails.thumb_image}}" style="max-width: 100%; height: 200px;">
-		  	</ion-slide>
-		  	<ion-slide *ngFor="let gimg of tour.place_gallary">
-		    	<img src="{{gimg.place_url}}" style="max-width: 100%; height: 200px;">
-		  	</ion-slide>
-		</ion-slides>
+		  <ion-card-content>
+		    <p>{{ tour.placeDetails.pl_address }}</p>
+		  </ion-card-content>
+
+		  <ion-row>
+		    <ion-col>
+		      <button ion-button icon-left clear small>
+		        <ion-icon name="calendar"></ion-icon>
+		        <div>{{ tour.placeDetails.days_num }} أيام - {{ tour.placeDetails.nights_num }} ليالي</div>
+		      </button>
+		    </ion-col>
+		    <ion-col>
+		      <button ion-button icon-left clear small>
+		        <ion-icon name="clock"></ion-icon>
+		        <div>{{ tour.placeDetails.tour_date }} </div>
+		      </button>
+		    </ion-col>
+		    <!-- <ion-col center text-center>
+		      <ion-note>
+		        11h ago
+		      </ion-note>
+		    </ion-col> -->
+		  </ion-row>
+		</ion-card>
+		<!-- <h1 class="c_primary">{{ tour.placeDetails.pl_name }}</h1>
 		<hr>
-
-		<p>{{ tour.placeDetails.pl_address }}</p>
+		<p class="text-center">
+			{{ tour.placeDetails.pl_address }}
+		</p> -->
 		<br>
 		
 		<ion-list>
 			<ion-item>
 				<ion-icon name="leaf" item-start></ion-icon>
 			    الغرفة المزدوجة:
-			    <ion-badge item-end>{{ tour.placeDetails.ADULT }}</ion-badge>
+			    <ion-badge item-end>{{ tour.placeDetails.ADULT }} {{currency}}</ion-badge>
 			</ion-item>
 			<ion-item>
 				<ion-icon name="leaf" item-start></ion-icon>
 			    الغرفة المفردة:
-			    <ion-badge item-end>{{ tour.placeDetails.SINGLE }}</ion-badge>
+			    <ion-badge item-end>{{ tour.placeDetails.SINGLE }} {{currency}}</ion-badge>
 			</ion-item>
 			<ion-item>
 				<ion-icon name="leaf" item-start></ion-icon>
 			    (6-11 سنة):
-			    <ion-badge item-end>{{ tour.placeDetails.SINGLE }}</ion-badge>
+			    <ion-badge item-end>{{ tour.placeDetails.p611yrs }} {{currency}}</ion-badge>
 			</ion-item>
 			<ion-item>
 				<ion-icon name="leaf" item-start></ion-icon>
 			    (2-5 سنة):
-			    <ion-badge item-end>{{ tour.placeDetails.SINGLE }}</ion-badge>
+			    <ion-badge item-end>{{ tour.placeDetails.p25yrs }} {{currency}}</ion-badge>
 			</ion-item>
 			<ion-item>
 				<ion-icon name="leaf" item-start></ion-icon>
 			    اطفال صغار:
-			    <ion-badge item-end>{{ tour.placeDetails.SINGLE }}</ion-badge>
+			    <ion-badge item-end>{{ tour.placeDetails.pINFANT }} {{currency}}</ion-badge>
 			</ion-item>
 			<ion-item>
 				<ion-icon name="leaf" item-start></ion-icon>
 			    المدة:
-			    <ion-badge item-end>{{ tour.placeDetails.SINGLE }}</ion-badge>
+			    <ion-badge item-end>{{ tour.placeDetails.days_num }} أيام - {{ tour.placeDetails.nights_num }} ليالي</ion-badge>
 			</ion-item>
 			<ion-item>
 				<ion-icon name="leaf" item-start></ion-icon>
 			    تاريخ الرحلة:
-			    <ion-badge item-end>{{ tour.placeDetails.SINGLE }}</ion-badge>
+			    <ion-badge item-end>{{ tour.placeDetails.tour_date }} 
+			    	<span *ngIf="tour.placeDetails.tour_date_note!=''">({{ tour.placeDetails.tour_date_note }})</span>
+			    </ion-badge>
 			</ion-item>
 		</ion-list>
 
@@ -93,9 +127,14 @@
 	</div>
 	<br>
 
-	<button (click)="goToBooking(tour.placeDetails.id, tour.placeDetails)" ion-button block round color="secondary">احجز الأن</button>
+	<ion-grid>
+		<ion-col>
+			<button (click)="goToBooking(tour.placeDetails.id, tour.placeDetails, tour.booking_data)" ion-button block round color="secondary">احجز الأن</button>
 
-	<br>
-	<a href="#" (click)="backToHome()" ion-button round block>العودة للتصنيفات</a>
+		<br>
+		<a href="#" (click)="backToHome()" ion-button round block>العودة للتصنيفات</a>
+	
+		</ion-col>
+	</ion-grid>
 
 </ion-content>
