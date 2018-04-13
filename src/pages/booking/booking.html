@@ -1,7 +1,7 @@
 <ion-header>
 
-  <ion-navbar color="secondary">
-    <ion-title>الحجز</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>تفاصيل الحجز</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,22 +15,26 @@
 	<br> رقم #{{tour_id}}
 
 	<ion-card>
-	  <ion-card-content>
-	    {{booking.WorkingTxt}}
-	  </ion-card-content>
+		<ion-card-header>
+		    خدمة العملاء
+		</ion-card-header>
+	  	<ion-card-content>
+	    	{{booking.WorkingTxt}}
+	    	<hr>
+	    	{{booking.phone_number}}
+	  	</ion-card-content>
 	</ion-card>
 
 	<ion-card>
-	  <ion-card-content>
-	    {{booking.WHyUsTxt}}
-	  </ion-card-content>
+		<ion-card-header>
+		    لماذا نحن ؟
+		</ion-card-header>
+	  	<ion-card-content>
+	    	{{booking.WHyUsTxt}}
+	  	</ion-card-content>
 	</ion-card>
 
-	<ion-card>
-	  <ion-card-content>
-	    {{booking.phone_number}}
-	  </ion-card-content>
-	</ion-card>
+	<button (click)="goToContact(tour.pl_name)" ion-button block round color="primary">تواصل معنا</button>
 
 	<button (click)="goToTour(tour_id)" ion-button block round color="secondary">العودة لتفاصيل الرحلة</button>
 </ion-content>

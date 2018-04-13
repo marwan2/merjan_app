@@ -19,14 +19,23 @@
 			</a>
 			<ion-card-content>
 				<a href="#" class="th" (click)="tourDetails(tour.id)">
-			    <ion-card-title>
-			      {{tour.pl_name}}
-			      </ion-card-title>
-			      </a>
-			    <p>
-			      {{tour.pl_address}}
-			    </p>
+			    	<ion-card-title> {{tour.pl_name}} </ion-card-title>
+			    </a>
 			</ion-card-content>
+			<ion-row>
+			    <ion-col>
+			      	<button ion-button icon-left clear small>
+			        <ion-icon name="map"></ion-icon>
+			        		<div>{{ tour.days_num }} أيام - {{ tour.nights_num }} ليالي</div>
+			      		</button>
+			    	</ion-col>
+			    	<ion-col>
+			      		<button ion-button icon-left clear small>
+			        		<ion-icon name="cash"></ion-icon>
+			        		<div>{{ tour.ADULT }} {{currency}}</div>
+			      		</button>
+			    	</ion-col>
+			  </ion-row>
 		</ion-card>
 	</div>
 

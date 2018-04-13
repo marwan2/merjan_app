@@ -20,7 +20,7 @@ export class TourDetailsPage {
 
   		this.tour_id = navParams.get('tour_id');
   		this.getTour(this.tour_id);
-      this.currency = 'جنيه';
+      this.currency = 'دولار';
   	}
 
   	ionViewDidLoad() {

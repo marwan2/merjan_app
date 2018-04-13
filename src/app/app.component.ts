@@ -28,7 +28,6 @@ export class MyApp {
     this.pages = [
       { title: 'الرئيسية', component: HomePage, id: 0 },
       { title: 'من نحن', component: AboutusPage, id: 0 },
-      { title: 'تواصل معنا', component: ContactPage, id: 0 },
     ];
 
     this.storage.get('stored_depts').then((storedDepts) => {
@@ -46,6 +45,8 @@ export class MyApp {
                 this.pages.push({ title:dept.name, component:'ToursPage', id:dept.id });
             });
         }
+
+        this.pages.push({ title: 'تواصل معنا', component: ContactPage, id: 0 });
     });
 
   }

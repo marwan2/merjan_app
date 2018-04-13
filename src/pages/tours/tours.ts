@@ -12,11 +12,13 @@ import { HomePage } from '../home/home';
 })
 export class ToursPage {
 
+   currency: any;
    tours: any;
    page_title: any;
    
    constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public loadingCtrl: LoadingController, public storage: Storage) {
 
+      this.currency = 'دولار';
       this.page_title = navParams.get('title');
       this.getTours(navParams.get('dept_id'));
    }

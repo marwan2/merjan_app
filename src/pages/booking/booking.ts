@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TourDetailsPage } from '../tour-details/tour-details';
+import { ContactPage } from '../contact/contact';
 
 @IonicPage()
 @Component({
@@ -22,6 +23,12 @@ export class BookingPage {
     goToTour(tour_id) {
       this.navCtrl.push(TourDetailsPage, {
         tour_id: tour_id
+      })
+    }
+
+    goToContact(tour_name) {
+      this.navCtrl.push(ContactPage, {
+        tour_name: tour_name
       })
     }
 

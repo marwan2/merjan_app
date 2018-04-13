@@ -50,46 +50,41 @@
 		    </ion-col> -->
 		  </ion-row>
 		</ion-card>
-		<!-- <h1 class="c_primary">{{ tour.placeDetails.pl_name }}</h1>
-		<hr>
-		<p class="text-center">
-			{{ tour.placeDetails.pl_address }}
-		</p> -->
 		<br>
 		
 		<ion-list>
 			<ion-item>
-				<ion-icon name="leaf" item-start></ion-icon>
+				<ion-icon name="cash" item-start></ion-icon>
 			    الغرفة المزدوجة:
 			    <ion-badge item-end>{{ tour.placeDetails.ADULT }} {{currency}}</ion-badge>
 			</ion-item>
 			<ion-item>
-				<ion-icon name="leaf" item-start></ion-icon>
+				<ion-icon name="cash" item-start></ion-icon>
 			    الغرفة المفردة:
 			    <ion-badge item-end>{{ tour.placeDetails.SINGLE }} {{currency}}</ion-badge>
 			</ion-item>
 			<ion-item>
-				<ion-icon name="leaf" item-start></ion-icon>
+				<ion-icon name="cash" item-start></ion-icon>
 			    (6-11 سنة):
 			    <ion-badge item-end>{{ tour.placeDetails.p611yrs }} {{currency}}</ion-badge>
 			</ion-item>
 			<ion-item>
-				<ion-icon name="leaf" item-start></ion-icon>
+				<ion-icon name="cash" item-start></ion-icon>
 			    (2-5 سنة):
 			    <ion-badge item-end>{{ tour.placeDetails.p25yrs }} {{currency}}</ion-badge>
 			</ion-item>
 			<ion-item>
-				<ion-icon name="leaf" item-start></ion-icon>
+				<ion-icon name="cash" item-start></ion-icon>
 			    اطفال صغار:
 			    <ion-badge item-end>{{ tour.placeDetails.pINFANT }} {{currency}}</ion-badge>
 			</ion-item>
 			<ion-item>
-				<ion-icon name="leaf" item-start></ion-icon>
+				<ion-icon name="calendar" item-start></ion-icon>
 			    المدة:
 			    <ion-badge item-end>{{ tour.placeDetails.days_num }} أيام - {{ tour.placeDetails.nights_num }} ليالي</ion-badge>
 			</ion-item>
 			<ion-item>
-				<ion-icon name="leaf" item-start></ion-icon>
+				<ion-icon name="clock" item-start></ion-icon>
 			    تاريخ الرحلة:
 			    <ion-badge item-end>{{ tour.placeDetails.tour_date }} 
 			    	<span *ngIf="tour.placeDetails.tour_date_note!=''">({{ tour.placeDetails.tour_date_note }})</span>
@@ -115,12 +110,21 @@
 		  </ion-card-content>
 		</ion-card>
 
-		<ion-card>
+		<ion-card hidden>
 		  <ion-card-header>
 		    المحتويات
 		  </ion-card-header>
 		  <ion-card-content>
 		    <div [innerHtml]="tour.placeDetails.Inclusions"></div>
+		  </ion-card-content>
+		</ion-card>	
+
+		<ion-card>
+		  <ion-card-header>
+		    البنود والشروط
+		  </ion-card-header>
+		  <ion-card-content>
+		    <div [innerHtml]="tour.placeDetails.Terms_Conditions"></div>
 		  </ion-card-content>
 		</ion-card>	
 

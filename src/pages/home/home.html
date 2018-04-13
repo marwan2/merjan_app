@@ -28,12 +28,32 @@
 
 
     <ion-grid>
-        <ion-row class="hp_nav">
-          <ion-col *ngFor="let dept of departments" col-6>
-            <a href="#" (click)="ToursPage(dept.id, dept.name)" ion-button block>
+        <ion-row class="hp_nav" *ngFor="let dept of departments">
+          <ion-col>
+            <a href="#" (click)="ToursPage(dept.id, dept.name)" ion-button round block>
                 {{dept.name}}
             </a>
           </ion-col>
         </ion-row>
     </ion-grid>
+
+    <hr>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <button (click)="goToAbout()" ion-button color="danger" outline block round icon-left>
+                    <ion-icon name="information-circle"></ion-icon>
+                    من نحن
+                </button>
+            </ion-col>
+            <ion-col>
+                <button (click)="goToContact()" ion-button color="danger" outline block round icon-left>
+                    <ion-icon name="contact"></ion-icon>
+                    تواصل معنا
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
 </ion-content>

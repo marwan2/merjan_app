@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
-import { ToursPage } from '../tours/tours';
 import { RestProvider } from '../../providers/rest/rest';
 import { Storage } from '@ionic/storage';
+
+import { ToursPage } from '../tours/tours';
+import { ContactPage } from '../contact/contact';
+import { AboutusPage } from '../aboutus/aboutus';
 
 @Component({
   selector: 'page-home',
@@ -48,5 +51,13 @@ export class HomePage {
 			dept_id:dept_id,
 			title: title,
 		});
+	}
+
+	goToContact() {
+		this.navCtrl.push(ContactPage);
+	}
+
+	goToAbout() {
+		this.navCtrl.push(AboutusPage);
 	}
 }
