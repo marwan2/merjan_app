@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Platform, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { RestProvider } from '../../providers/rest/rest';
 import { TourDetailsPage } from '../tour-details/tour-details';
@@ -16,7 +16,7 @@ export class ToursPage {
    tours: any;
    page_title: any;
    
-   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public loadingCtrl: LoadingController, public storage: Storage) {
+   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public loadingCtrl: LoadingController, public storage: Storage, private platform: Platform, public alertCtrl: AlertController) {
 
       this.currency = 'دولار';
       this.page_title = navParams.get('title');
@@ -29,24 +29,56 @@ export class ToursPage {
 
    getTours(dept_id) {
 
-      this.storage.get('stored_tours_'+dept_id).then((storedTours) => {
-         if(!storedTours) {
+      this.platform.ready().then(() => {
+
+         var status = navigator.onLine;
+
+         if(status != true)  { //no internet connection
+
+            this.storage.get('stored_tours_'+dept_id).then((storedTours) => {
+               if(!storedTours)
+               {
+                  let alert = this.alertCtrl.create({
+                      title: "لا يوجد اتصال بالانترنت",
+                      subTitle: 'عفوا يرجى التأكد من توافر اتصال بالانترنت لتتمكن من عرض الرحلات',
+                      buttons: ["OK"]
+                  });
+
+                  alert.present();
+               } else {
+                  this.tours = storedTours;
+               }
+            });
+
+         } else { //online
             let loading = this.loadingCtrl.create({
-                content: 'جاري التحميل ...',
-                duration: 10000,
+                content: 'جاري التحميل ...', duration: 10000,
             });
             loading.present();
 
             this.restProvider.getTours(dept_id)
                .then(data => {
                   this.tours = data;
-                  this.storage.set('stored_tours_'+dept_id, this.tours);
+
+                  this.storage.get('stored_tours_'+dept_id).then((storedTours) => {
+                     if(!storedTours)
+                     { //save to storage if not exists
+                        this.storage.set('stored_tours_'+dept_id, this.tours);
+                     }
+                     else
+                     { //if exists delete it, then save new one
+                        this.storage.remove('stored_tours_'+dept_id);
+
+                        setTimeout(function(){
+                           this.storage.set('stored_tours_'+dept_id, this.tours);   
+                        }, 1000);                        
+                     }
+                  });
+
                   loading.dismiss();
             });
-         } else {
-            this.tours = storedTours;
          }
-      });
+     });
    }
 
    tourDetails(tour_id) {
