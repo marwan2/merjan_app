@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { RestProvider } from '../../providers/rest/rest';
 import { HomePage } from '../home/home';
 import { BookingPage } from '../booking/booking';
+import { SearchPage } from '../search/search';
 
 @IonicPage()
 @Component({
@@ -59,6 +60,10 @@ export class TourDetailsPage {
         tour: tour,
         booking: booking,
       });
+    }
+
+    goToSearchPage() {
+        this.navCtrl.push(SearchPage);
     }
 
 }

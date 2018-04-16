@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { AboutusPage } from '../pages/aboutus/aboutus';
 import { ContactPage } from '../pages/contact/contact';
 import { ToursPage } from '../pages/tours/tours';
+import { SearchPage } from '../pages/search/search';
 
 @Component({
   templateUrl: 'app.html'
@@ -28,6 +29,7 @@ export class MyApp {
     this.pages = [
       { title: 'الرئيسية', component: HomePage, id: 0 },
       { title: 'من نحن', component: AboutusPage, id: 0 },
+      { title: 'البحث', component: SearchPage, id: 0 },
     ];
 
     this.storage.get('stored_depts').then((storedDepts) => {
@@ -73,5 +75,9 @@ export class MyApp {
             dept_id:dept_id,
             title: title,
         });
+    }
+
+    goToSearchPage() {
+        this.nav.push(SearchPage);
     }
 }

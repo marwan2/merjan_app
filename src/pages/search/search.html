@@ -1,0 +1,55 @@
+<ion-header>
+  	<ion-navbar color="danger" swipeBackEnabled="false" persistent="true">
+  		<button ion-button menuToggle>
+	  		<ion-icon name="menu"></ion-icon>
+		</button>
+    	<ion-title>البحث</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-card>
+	  	<ion-card-content>
+			<form [formGroup]="searchForm">
+	    		<ion-list>
+		  			<ion-item>
+			    		<ion-label floating>كلمة البحث</ion-label>
+			    		<ion-input type="text" [formControl]="searchForm.controls['keyword']"></ion-input>
+			    	</ion-item>
+				    <div *ngIf="!searchForm.controls.keyword.hasError" class="validator-error">
+				    	من فضلك ادخل كلمة البحث
+					</div>
+				</ion-list>
+			</form>
+			<div class="search_btn">
+			    <button type="submit" ion-button color="primary" block (click)="submitSearch()" [disabled]="!searchForm.valid">ابحث</button>
+			</div>
+	  	</ion-card-content>	
+	</ion-card>
+
+	
+	<div *ngIf="searchResults">
+		<hr>
+		<ion-card>
+			<ion-card-content color="primary">
+			    نتائج البحث
+			</ion-card-content>
+		</ion-card>
+		
+		<div *ngIf="searchResults.data_exist==0" padding>
+			<button ion-button color="danger" outline block>عفوا لا يوجد نتائج لبحثك</button>
+		</div>
+
+		<ion-list>
+	  	  	<button ion-item *ngFor="let tour of searchResults.rows" (click)="tourDetails(tour.id)" text-wrap>
+		    	<ion-thumbnail item-start>
+		      		<img src="{{tour.thumb_image}}"/>
+		    	</ion-thumbnail>
+		    	<h2 class="primary">{{tour.pl_name}}</h2>
+		    	<h3 class="danger">{{ tour.pl_address }}</h3>
+		    	<p>{{ tour.ADULT }} {{currency}}</p>
+		  	</button>
+		</ion-list>
+	</div>
+
+</ion-content>

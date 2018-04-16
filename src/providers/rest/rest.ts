@@ -42,6 +42,17 @@ export class RestProvider {
 		});
 	}
 
+	searchTours(keyword) {
+		return new Promise(resolve => {
+			this.http.get(this.apiUrl+ '/your_holidays/0?Destination='+keyword).subscribe(data=>{
+				resolve(data);
+			}, err=> {
+				console.log('Error while searching tours, keyword:' + keyword);
+				console.log(err);
+			});
+		});
+	}
+
 	addUser(data) {
 	  return new Promise((resolve, reject) => {
 	    this.http.post(this.apiUrl+'/users', JSON.stringify(data))

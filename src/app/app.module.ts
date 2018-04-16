@@ -12,6 +12,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { BookingPage } from '../pages/booking/booking';
 import { PrivacyPage } from '../pages/privacy/privacy';
 import { TermsPage }   from '../pages/terms/terms';
+import { SearchPage }   from '../pages/search/search';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -30,6 +31,7 @@ import { RestProvider } from '../providers/rest/rest';
     ContactPage,
     PrivacyPage,
     TermsPage,
+    SearchPage,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,7 @@ import { RestProvider } from '../providers/rest/rest';
     ContactPage,
     PrivacyPage,
     TermsPage,
+    SearchPage,
   ],
   providers: [
     StatusBar,

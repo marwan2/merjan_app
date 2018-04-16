@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { ToursPage } from '../tours/tours';
 import { ContactPage } from '../contact/contact';
 import { AboutusPage } from '../aboutus/aboutus';
+import { SearchPage } from '../search/search';
 
 @Component({
   selector: 'page-home',
@@ -60,4 +61,8 @@ export class HomePage {
 	goToAbout() {
 		this.navCtrl.push(AboutusPage);
 	}
+
+	goToSearchPage() {
+        this.navCtrl.push(SearchPage);
+    }
 }

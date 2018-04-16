@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { RestProvider } from '../../providers/rest/rest';
 import { TourDetailsPage } from '../tour-details/tour-details';
 import { HomePage } from '../home/home';
+import { SearchPage } from '../search/search';
 
 @IonicPage()
 @Component({
@@ -68,10 +69,7 @@ export class ToursPage {
                      else
                      { //if exists delete it, then save new one
                         this.storage.remove('stored_tours_'+dept_id);
-
-                        setTimeout(function(){
-                           this.storage.set('stored_tours_'+dept_id, this.tours);   
-                        }, 1000);                        
+                        this.storage.set('stored_tours_'+dept_id, this.tours);
                      }
                   });
 
@@ -89,6 +87,10 @@ export class ToursPage {
 
    backToHome() {
    	this.navCtrl.push(HomePage);
+   }
+
+   goToSearchPage() {
+      this.navCtrl.push(SearchPage);
    }
 
 }
