@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
@@ -21,8 +21,9 @@ export class MyApp {
 
   pages: Array<{title: string, component: any, id: any}>;
   departments: any;
+  mtDataVersion: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public storage: Storage, public restProvider: RestProvider) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public storage: Storage, public restProvider: RestProvider, public alertCtrl: AlertController) {
     this.initializeApp();
     this.platform.setDir('rtl', true);
 
@@ -31,6 +32,7 @@ export class MyApp {
       { title: 'من نحن', component: AboutusPage, id: 0 },
       { title: 'البحث', component: SearchPage, id: 0 },
     ];
+
 
     this.storage.get('stored_depts').then((storedDepts) => {
         if(!storedDepts) {
@@ -51,6 +53,52 @@ export class MyApp {
         this.pages.push({ title: 'تواصل معنا', component: ContactPage, id: 0 });
     });
 
+
+    //Check Connection, Get Data Version to compare with localstorage version, to notify user about new updates
+    this.platform.ready().then(() => {
+       var status = navigator.onLine;
+       if(status == true)  { //internet connection found
+          //get from API the latest dataVersion
+          this.restProvider.getDataVersion().then(data => {
+              
+              this.mtDataVersion = data.data_version;
+              this.storage.get('mt_data_version').then((localDataVersion) => {
+                  if(!localDataVersion) // not found, save new one, no popup alerts
+                  {
+                    this.storage.set('mt_data_version', this.mtDataVersion);
+                  }
+                  else //if exists compare between it and API, 
+                  {
+                    if(this.mtDataVersion != localDataVersion) {
+                      //show alert
+                      let alert = this.alertCtrl.create({
+                          title: "تحديث جديد",
+                          message: 'هناك تحديثات جديدة في برامج الرحلات, اطلع عليها الأن',
+                          buttons: [
+                            {
+                              text: 'شكرا',
+                              handler: () => {}
+                            }, {
+                              text: 'أحدث الرحلات',
+                              handler: () => {
+                                this.goToToursPage(0, 'أحدث الرحلات');
+                              }
+                            }
+                          ]
+                      });
+                      alert.present();
+
+                      //delete current localDataVersion, then save new one
+                      this.storage.remove('mt_data_version');
+                      this.storage.set('mt_data_version', this.mtDataVersion);
+                    } else {
+                      //dataVersion are the same, nothing to do
+                    }
+                  }
+              });
+          });
+        }
+    });
   }
 
   initializeApp() {

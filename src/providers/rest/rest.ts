@@ -10,7 +10,17 @@ export class RestProvider {
     	console.log('RestProvider Provider initialized');
   	}
 
-  	getTourDepartments() {
+  	getDataVersion() {
+	  	return new Promise(resolve => {
+	    	this.http.get(this.apiUrl+'/getDataVersion').subscribe(data => {
+	      		resolve(data);
+	    	}, err => {
+	      		console.log(err);
+	    	});
+	  	});
+	}
+
+	getTourDepartments() {
 	  	return new Promise(resolve => {
 	    	this.http.get(this.apiUrl+'/all_depts').subscribe(data => {
 	      		resolve(data);
