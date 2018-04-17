@@ -60,42 +60,41 @@ export class MyApp {
        if(status == true)  { //internet connection found
           //get from API the latest dataVersion
           this.restProvider.getDataVersion().then(data => {
-              
-              this.mtDataVersion = data.data_version;
-              this.storage.get('mt_data_version').then((localDataVersion) => {
-                  if(!localDataVersion) // not found, save new one, no popup alerts
-                  {
-                    this.storage.set('mt_data_version', this.mtDataVersion);
-                  }
-                  else //if exists compare between it and API, 
-                  {
-                    if(this.mtDataVersion != localDataVersion) {
-                      //show alert
-                      let alert = this.alertCtrl.create({
-                          title: "تحديث جديد",
-                          message: 'هناك تحديثات جديدة في برامج الرحلات, اطلع عليها الأن',
-                          buttons: [
-                            {
-                              text: 'شكرا',
-                              handler: () => {}
-                            }, {
-                              text: 'أحدث الرحلات',
-                              handler: () => {
-                                this.goToToursPage(0, 'أحدث الرحلات');
-                              }
-                            }
-                          ]
-                      });
-                      alert.present();
-
-                      //delete current localDataVersion, then save new one
-                      this.storage.remove('mt_data_version');
+              if(data) {
+                this.mtDataVersion = data.data_version;
+                this.storage.get('mt_data_version').then((localDataVersion) => {
+                    if(!localDataVersion) // not found, save new one, no popup alerts
+                    {
                       this.storage.set('mt_data_version', this.mtDataVersion);
-                    } else {
-                      //dataVersion are the same, nothing to do
                     }
-                  }
-              });
+                    else //if exists compare between it and API, 
+                    {
+                      if(this.mtDataVersion != localDataVersion) {
+                        //show alert
+                        let alert = this.alertCtrl.create({
+                            title: "تحديث جديد",
+                            message: 'هناك تحديثات جديدة في برامج الرحلات, اطلع عليها الأن',
+                            buttons: [
+                              {
+                                text: 'شكرا',
+                                handler: () => {}
+                              }, {
+                                text: 'أحدث الرحلات',
+                                handler: () => {
+                                  this.goToToursPage(0, 'أحدث الرحلات');
+                                }
+                              }
+                            ]
+                        });
+                        alert.present();
+
+                        //delete current localDataVersion, then save new one
+                        this.storage.remove('mt_data_version');
+                        this.storage.set('mt_data_version', this.mtDataVersion);
+                      }
+                    }
+                });                
+              }
           });
         }
     });
@@ -107,6 +106,9 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       //this.splashScreen.hide();
+        setTimeout(() => {
+          this.splashScreen.hide();
+        }, 100);
     });
   }
 
