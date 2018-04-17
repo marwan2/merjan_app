@@ -7,6 +7,7 @@ import { ToursPage } from '../tours/tours';
 import { ContactPage } from '../contact/contact';
 import { AboutusPage } from '../aboutus/aboutus';
 import { SearchPage } from '../search/search';
+import { Network } from '@ionic-native/network';
 
 @Component({
   selector: 'page-home',
@@ -17,7 +18,7 @@ export class HomePage {
 	departments: any;
 	slides: any;
 
-	constructor(public navCtrl: NavController, public restProvider: RestProvider, public loadingCtrl: LoadingController, public storage: Storage) {
+	constructor(private network: Network, public navCtrl: NavController, public restProvider: RestProvider, public loadingCtrl: LoadingController, public storage: Storage) {
 		
 		this.getTourDepartments();
 		this.slides = [1,2,3,4,5];

@@ -5,6 +5,7 @@ import { RestProvider } from '../../providers/rest/rest';
 import { TourDetailsPage } from '../tour-details/tour-details';
 import { HomePage } from '../home/home';
 import { SearchPage } from '../search/search';
+import { Network } from '@ionic-native/network';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,7 @@ export class ToursPage {
    tours: any;
    page_title: any;
    
-   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public loadingCtrl: LoadingController, public storage: Storage, private platform: Platform, public alertCtrl: AlertController) {
+   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public loadingCtrl: LoadingController, public storage: Storage, private platform: Platform, public alertCtrl: AlertController, private network: Network) {
 
       this.currency = 'دولار';
       this.page_title = navParams.get('title');
@@ -32,10 +33,16 @@ export class ToursPage {
 
       this.platform.ready().then(() => {
 
-         var status = navigator.onLine;
+         var status = false;
+         if(this.network.type !== 'none' && navigator.onLine==true){
+           status = true;
+         } else if(this.network.type === 'none'){
+           status = false;
+         } else{
+           status = false;
+         }
 
          if(status != true)  { //no internet connection
-
             this.storage.get('stored_tours_'+dept_id).then((storedTours) => {
                if(!storedTours)
                {
